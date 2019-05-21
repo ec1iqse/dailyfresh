@@ -10,7 +10,7 @@ from django.db import models
 class User(AbstractUser, BaseModel):
     """用户模型类"""
 
-    class Meta():
+    class Meta:
         db_table = 'df_user'
         verbose_name = '用户'
 
@@ -35,6 +35,6 @@ class Address(BaseModel):
     phone = models.CharField(max_length=11, verbose_name='联系电话')
     is_default = models.BooleanField(default=False, verbose_name='是否默认')
 
-    class Meta():
+    class Meta:
         db_table = 'df_address'
         verbose_name = '地址'
