@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class GoodsType(BaseModel):
     name = models.CharField(max_length=20, verbose_name='种类名称')
     logo = models.CharField(max_length=20, verbose_name='标识')
@@ -21,10 +22,12 @@ class GoodsType(BaseModel):
 
 class GoodsSKU(BaseModel):
     """商品SKU模型类"""
+
     status_choices = (
         (0, '下线'),
         (1, '上线'),
     )
+
     type = models.ForeignKey('GoodsType', verbose_name='商品种类', on_delete=models.CASCADE)
     goods = models.ForeignKey('Goods', verbose_name='商品SKU', on_delete=models.CASCADE)
     name = models.CharField(max_length=20, verbose_name='商品名称')
