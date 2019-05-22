@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# django认证系统使用的模型类
+# django认证系统使用的模型类(应用名.类名)
 
 AUTH_USER_MODEL = 'user.User'
 

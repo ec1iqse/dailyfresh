@@ -16,7 +16,7 @@ class GoodsType(BaseModel):
         verbose_name = '商品种类'
         verbose_name_plural = verbose_name
 
-    def __dir__(self):
+    def __str__(self):
         return self.name
 
 
@@ -45,6 +45,20 @@ class GoodsSKU(BaseModel):
         verbose_name_plural = verbose_name
 
 
+class Goods(BaseModel):
+    """商品SPU模型类"""
+    name = models.CharField(max_length=20, verbose_name='商品SPU名称')
+
+    # 富文本类型：带有格式的文本
+
+    detail = HTMLField(blank=True, verbose_name='商品详情')
+
+    class Meta:
+        db_table = 'df_goods'
+        verbose_name = '商品SPU'
+        verbose_name_plural = verbose_name
+
+
 class GoodsImage(BaseModel):
     """图片商品模型类"""
     sku = models.ForeignKey('GoodsSKU', verbose_name='商品', on_delete=models.CASCADE)
@@ -69,6 +83,7 @@ class IndexGoodsBanner(BaseModel):
 
 
 class IndexTypeGoodsBanner(BaseModel):
+    """首页分类商品展示模型类"""
     DISPLAY_TYPE_CHOICES = (
         (0, '标题'),
         (1, '图片'),
