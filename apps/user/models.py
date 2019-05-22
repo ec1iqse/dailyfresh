@@ -28,7 +28,7 @@ class User(AbstractUser, BaseModel):
 
 
 class Address(BaseModel):
-    user = models.ForeignKey('User', verbose_name='所属账户')
+    user = models.ForeignKey('User', verbose_name='所属账户', on_delete=models.CASCADE)
     receiver = models.CharField(max_length=20, verbose_name='收件人')
     addr = models.CharField(max_length=256, verbose_name='收件地址')
     zip_code = models.CharField(max_length=6, null=True, verbose_name='邮政编码')
@@ -38,3 +38,4 @@ class Address(BaseModel):
     class Meta:
         db_table = 'df_address'
         verbose_name = '地址'
+        verbose_name_plural = verbose_name

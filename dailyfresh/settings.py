@@ -108,6 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# django认证系统使用的模型类
+
+AUTH_USER_MODEL = 'user.User'
+
 # 富文本编辑器设置
 
 TINYMCE_DEFAULT_CONFIG = {
