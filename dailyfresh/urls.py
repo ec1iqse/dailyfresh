@@ -20,9 +20,12 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^tinymce/', include('tinymce.urls')),  # 富文本编辑器
-    re_path(r'^user/', include('user.urls', namespace='user')),  # 用户模块
-    re_path(r'cart/', include('cart.urls', namespace='cart')),  # 购物车模块
-    re_path(r'order/', include('order.urls', namespace='order')),  # 订单模块
-    path('', include('goods.urls', namespace='goods')),  # 商品模块(要放在最后！防止被抢先匹配)
+    re_path(r'^tinymce/', include(('tinymce.urls', 'tinymce'), namespace='tinymce')),  # 富文本编辑器
+    re_path(r'^user/', include(('user.urls', 'user'), namespace='user')),  # 用户模块
+    re_path(r'cart/', include(('cart.urls', 'cart'), namespace='cart')),  # 购物车模块
+    re_path(r'order/', include(('order.urls', 'order'), namespace='order')),  # 订单模块
+    path('', include(('goods.urls', 'goods'), namespace='goods')),  # 商品模块(要放在最后！防止被抢先匹配)
+
+    # re_path(r'^tinymce/', include('tinymce.urls',namespace='tinymce')),  # 富文本编辑器
+
 ]

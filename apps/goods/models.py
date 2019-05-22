@@ -81,7 +81,7 @@ class IndexTypeGoodsBanner(BaseModel):
         verbose_name_plural = verbose_name
 
 
-class IndexPromotionBnner(BaseModel):
+class IndexPromotionBanner(BaseModel):
     """首页促销活动模型类"""
     name = models.CharField(max_length=20, verbose_name='活动名称')
     url = models.URLField(verbose_name='活动链接')

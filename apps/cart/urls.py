@@ -17,6 +17,7 @@ from django.urls import include
 from django.urls import re_path
 from django.urls import path
 
+# app_name = 'cart'
 urlpatterns = [
 
 ]
