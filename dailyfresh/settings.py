@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qa*)$+8ekn^h&!2eq29w+89ag_($zpq-=xipm6s&4ir2sy1biu'
+SECRET_KEY = 'qa*)$+8ekn^h&!2eq29w+89ag_($zpq-=xipm6s&4ir2sy1biu'  # 注意！
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,4 +137,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# 发送邮件配置
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# smtp服务器 地址
+
+EMAIL_HOST = 'smtp.163.com'
+
+# 端口
+
+EMAIL_PORT = 25
+
+# 发送邮件的邮箱
+
+EMAIL_HOST_USER = 'UnattendService@163.com'
+
+# 设置 TLS加密方式
+EMAIL_USE_TLS = True
+
+# 在邮箱中设置的客户端授权密码
+
+EMAIL_HOST_PASSWORD = 's3d75ehuo6'
+
+# 收件人看到的发件人
+
+EMAIL_FROM = 'donotreply<UnattendService@163.com>'
