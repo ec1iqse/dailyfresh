@@ -16,9 +16,11 @@ Including another URLconf
 from django.urls import include
 from django.urls import re_path
 from django.urls import path
-from . import views
+from .views import RegisterView
+# from . import views
 
 urlpatterns = [
-    path('register', views.register, name='register'),  # 注册
-    path('register_handle', views.register_handle, name='register_handle'),  # 注册处理
+    # path('register', views.register, name='register'),  # 注册
+    # path('register_handle', views.register_handle, name='register_handle'),  # 注册处理
+    path('register', RegisterView.as_view(), name='register'),  # 注册
 ]
