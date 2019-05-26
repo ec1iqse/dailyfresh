@@ -154,7 +154,7 @@ EMAIL_PORT = 25
 
 # 发送邮件的邮箱
 
-EMAIL_HOST_USER = 'Unattendedservice@163.com'
+EMAIL_HOST_USER = 'UnattendedService@163.com'
 
 # 设置 TLS加密方式
 EMAIL_USE_TLS = True
@@ -165,4 +165,4 @@ EMAIL_HOST_PASSWORD = 's3d75ehuo6'
 
 # 收件人看到的发件人
 
-EMAIL_FROM = 'donotreply<Unattendedservice@163.com>'
+EMAIL_FROM = 'donotreply<UnattendedService@163.com>'
