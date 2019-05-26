@@ -9,6 +9,7 @@ from django.conf import settings
 from django.urls import reverse
 from .models import User
 import re
+from celery_tasks.tasks import send_register_active_email
 
 
 # Create your views here.
@@ -157,6 +158,9 @@ class RegisterView(View):
         token = serializer.dumps(info)
         token = token.decode('UTF-8')
 
+        # 发送邮件
+        send_register_active_email.delay(email,username,token)
+        '''
         #  发送激活邮件，包含激活链接http://localhost:8000/user/active/<加密后的用户ID>
 
         content = """
@@ -178,6 +182,7 @@ class RegisterView(View):
         send_mail(subject='天天生鲜欢迎信息', message='', from_email=settings.EMAIL_FROM, recipient_list=[email],
                   html_message=html_content, )
         # 激活连接中需要包含用户的身份信息，并且要把身份进行加密处理
+        '''
 
         # 返回应答,跳转到首页
         return redirect(reverse('goods:index'))
