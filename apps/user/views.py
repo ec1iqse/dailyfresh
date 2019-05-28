@@ -9,7 +9,6 @@ from django.conf import settings
 from django.urls import reverse
 from .models import User
 import re
-from celery_tasks.tasks import send_register_active_email
 
 
 # Create your views here.
@@ -152,37 +151,14 @@ class RegisterView(View):
         user.is_active = 0
         user.save()
 
+        #  发送激活邮件，包含激活链接http://localhost:8000/user/active/<加密后的用户ID>
+        send_mail(subject='天天生鲜欢迎信息', message='邮件正文', from_email=settings.EMAIL_FROM, recipient_list=[email])
+        # 激活连接中需要包含用户的身份信息，并且要把身份进行加密处理
+
         # 加密用户身份信息，生成激活的Token
         serializer = Serializer(settings.SECRET_KEY, 3600)
         info = {'confirm': user.id}
         token = serializer.dumps(info)
-        token = token.decode('UTF-8')
-
-        # 发送邮件
-        send_register_active_email.delay(email,username,token)
-        '''
-        #  发送激活邮件，包含激活链接http://localhost:8000/user/active/<加密后的用户ID>
-
-        content = """
-                    <h1>{}，欢迎您成为天天生鲜注册会员</h1>，
-                    请点击以下链接激活您的账户<br/>
-                    <a href="http://localhost:8000/user/active/{}">
-                    http://localhost:8000/user/active/{} 
-                    </a>
-                   """.format(username, token, token)
-
-        html_content = """
-                           <h1>{}，欢迎您成为天天生鲜注册会员</h1>，
-                           请点击以下链接激活您的账户<br/>
-                           <a href="http://localhost:8000/user/active/{}">
-                           http://localhost:8000/user/active/{} 
-                           </a>
-                          """.format(username, token, token)
-
-        send_mail(subject='天天生鲜欢迎信息', message='', from_email=settings.EMAIL_FROM, recipient_list=[email],
-                  html_message=html_content, )
-        # 激活连接中需要包含用户的身份信息，并且要把身份进行加密处理
-        '''
 
         # 返回应答,跳转到首页
         return redirect(reverse('goods:index'))
