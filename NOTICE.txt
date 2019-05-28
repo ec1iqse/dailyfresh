@@ -1,0 +1,4 @@
+celery 只能在本目录下执行
+不能在celery目录里面运行
+celery worker -A celery_tasks.tasks --loglevel=info
+注意：是项目名，用tasks,或者在app下启动的话worker会报未注册错误

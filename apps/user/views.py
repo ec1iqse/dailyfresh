@@ -1,5 +1,6 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from itsdangerous import SignatureExpired
+from django.conf import settings
 from django.core.mail import send_mail
 from django.views.generic import View
 from django.shortcuts import redirect
