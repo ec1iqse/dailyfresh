@@ -9,7 +9,9 @@ from django.core.mail import send_mail
 # 在任务处理者一端(celery)
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dailyfresh.settings')
 # django.setup()
-
+os.environ.setdefault('FORKED_BY_MULTIPROCESSING', '1')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dailyfresh.settings')
+django.setup()
 # 使用celery
 # 创建一个Celery的实例对象
 app = Celery('celery_tasks.tasks', broker='redis://root:root@localhost:6379/8')

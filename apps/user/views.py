@@ -1,15 +1,17 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from celery_tasks.tasks import send_register_active_email
+from django.contrib.auth import authenticate
 from itsdangerous import SignatureExpired
 from django.core.mail import send_mail
-from django.views.generic import View
 from django.shortcuts import redirect
+from django.contrib.auth import login
+from django.views.generic import View
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
 from django.urls import reverse
 from .models import User
 import re
-from celery_tasks.tasks import send_register_active_email
 
 
 # Create your views here.
@@ -159,7 +161,7 @@ class RegisterView(View):
         token = token.decode('UTF-8')
 
         # 发送邮件
-        send_register_active_email.delay(email,username,token)
+        send_register_active_email.delay(email, username, token)
         '''
         #  发送激活邮件，包含激活链接http://localhost:8000/user/active/<加密后的用户ID>
 
@@ -216,3 +218,31 @@ class LoginView(View):
     def get(self, request):
         """显示登陆页面"""
         return render(request, template_name='login.html')
+
+    def post(self, request):
+        """登录校验"""
+        # 接受数据
+        username = request.POST.get('username')
+        password = request.POST.get('pwd')
+        # 校验数据
+        if not all([username, password]):
+            return render(request, content_type={'errormsg': '数据不完整'})
+        else:
+            # 业务处理：登录校验
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                # 用户名密码正确
+                if user.is_active:
+                    # 用户已激活
+
+                    # 记录用户的登录状态
+                    login(request, user)
+                    # 跳转到首页
+                    return redirect(reverse(viewname='goods:index'))
+                else:
+                    # 用户未激活
+                    return render(request, template_name='login.html', content_type={'errormsg': '账号未激活，请先激活您的账户'})
+
+            else:
+                # 用户名或密码错误
+                return render(request, template_name='login.html', content_type={'errormsg': '用户名或密码错误'})
