@@ -246,3 +246,4 @@ class LoginView(View):
             else:
                 # 用户名或密码错误
                 return render(request, template_name='login.html', content_type={'errormsg': '用户名或密码错误'})
+                pass
