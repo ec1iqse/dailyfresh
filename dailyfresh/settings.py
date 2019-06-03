@@ -167,3 +167,21 @@ EMAIL_HOST_PASSWORD = 's3d75ehuo6'
 # 收件人看到的发件人
 
 EMAIL_FROM = 'donotreply<UnattendedService@163.com>'
+
+# redis缓存配置
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/9",  # 使用9号数据库
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "root"
+        }
+    }
+}
+
+# 配置session存储
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"

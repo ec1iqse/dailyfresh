@@ -160,8 +160,8 @@ class RegisterView(View):
         token = serializer.dumps(info)
         token = token.decode('UTF-8')
 
-        # 发送邮件
-        send_register_active_email.delay(email, username, token)
+        # 发送邮件(celery异步)
+        send_register_active_email.delay(email, username, token)  # celery异步
         '''
         #  发送激活邮件，包含激活链接http://localhost:8000/user/active/<加密后的用户ID>
 
@@ -217,7 +217,15 @@ class ActiveView(View):
 class LoginView(View):
     def get(self, request):
         """显示登陆页面"""
-        return render(request, template_name='login.html')
+        # 判断是否记住了用户名
+        if 'username' in request.COOKIES:
+            username = request.COOKIES.get('username')
+            checked = 'checked'
+        else:
+            username = ''
+            checked = ''
+        # 使用模板
+        return render(request, template_name='login.html', content_type={'username': username, 'checked': checked})
 
     def post(self, request):
         """登录校验"""
@@ -234,16 +242,20 @@ class LoginView(View):
                 # 用户名密码正确
                 if user.is_active:
                     # 用户已激活
-
-                    # 记录用户的登录状态
                     login(request, user)
-                    # 跳转到首页
-                    return redirect(reverse(viewname='goods:index'))
+                    responce = redirect(reverse(viewname='goods:index'))  # HttpResponceRedirect的子类
+                    # 判断是否需要记住用户名
+                    # remember = request.POST.get('remember')
+                    if request.POST.get('remember') == 'on':
+                        # 记住用户名
+                        responce.set_cookie('username', username, max_age=7 * 24 * 3600)
+                    else:
+                        responce.delete_cookie('username')
+
+                    return responce
                 else:
                     # 用户未激活
                     return render(request, template_name='login.html', content_type={'errormsg': '账号未激活，请先激活您的账户'})
-
             else:
                 # 用户名或密码错误
                 return render(request, template_name='login.html', content_type={'errormsg': '用户名或密码错误'})
-                pass
