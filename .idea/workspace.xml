@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="abcd7487-a025-474b-a817-aceb89fc1ff8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/run .bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dailyfresh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dailyfresh.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f406c5a2-3154-4bdb-9a01-e350555e21e3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dailyfresh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/dailyfresh/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dailyfresh/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dailyfresh/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run(不能以管理员身份运行).bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_user_center.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_user_center.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_center_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_center_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_center_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_center_site.html" afterDir="false" />
-    </list>
+    <list default="true" id="abcd7487-a025-474b-a817-aceb89fc1ff8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/user/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="247" column="40" lean-forward="true" selection-start-line="247" selection-start-column="40" selection-end-line="247" selection-end-column="40" />
+            <state relative-caret-position="188">
+              <caret line="245" column="34" lean-forward="true" selection-start-line="245" selection-start-column="34" selection-end-line="245" selection-end-column="34" />
               <folding>
                 <element signature="e#0#70#0" expanded="true" />
                 <element signature="e#572#3278#1" />
@@ -237,7 +219,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559709343973</updated>
-      <workItem from="1559709354821" duration="12372000" />
+      <workItem from="1559709354821" duration="13125000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <created>1559709506009</created>
@@ -246,11 +228,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559709506009</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="登录后页面跳转未完成">
+      <created>1559735787666</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559735787667</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13587000" />
+    <option name="totallyTimeSpent" value="14340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1616" height="876" extended-state="6" />
@@ -307,7 +296,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
+    <MESSAGE value="登录后页面跳转未完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录后页面跳转未完成" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/celery_tasks/tasks.py">
@@ -425,8 +415,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/user/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="247" column="40" lean-forward="true" selection-start-line="247" selection-start-column="40" selection-end-line="247" selection-end-column="40" />
+        <state relative-caret-position="188">
+          <caret line="245" column="34" lean-forward="true" selection-start-line="245" selection-start-column="34" selection-end-line="245" selection-end-column="34" />
           <folding>
             <element signature="e#0#70#0" expanded="true" />
             <element signature="e#572#3278#1" />
