@@ -18,6 +18,9 @@ from django.urls import include
 from django.urls import re_path
 from django.urls import path
 
+# 注意！ include()第一个参数是一个元组！！！是('应用名称.urls','应用名称')
+# 即为：include(('应用名称.urls','应用名称')，namespace='XXXXXXX')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^tinymce/', include(('tinymce.urls', 'tinymce'), namespace='tinymce')),  # 富文本编辑器

@@ -13,9 +13,10 @@ from django.urls import reverse
 from .models import User
 import re
 
-
 # Create your views here.
 
+
+'''
 # /user/register
 def register(request):
     if request.method == 'GET':
@@ -105,6 +106,8 @@ def register_handle(request):
 
     # 返回应答,跳转到首页
     return redirect(reverse('goods:index'))
+
+'''
 
 
 # /user/register
@@ -213,7 +216,7 @@ class ActiveView(View):
             return HttpResponse('激活链接已过期')
 
 
-#  user/login
+#  /user/login
 class LoginView(View):
     def get(self, request):
         """显示登陆页面"""
@@ -243,7 +246,15 @@ class LoginView(View):
                 if user.is_active:
                     # 用户已激活
                     login(request, user)
-                    responce = redirect(reverse(viewname='goods:index'))  # HttpResponceRedirect的子类
+
+                    # 获取登录后跳转到的地址,
+                    # 默认跳转到首页
+                    next_url = request.GET.get('next', reverse('goods:index'))
+                    # 跳转到next_url
+                    responce=redirect(to=next_url)
+
+                    # responce = redirect(reverse(viewname='goods:index'))  # HttpResponceRedirect的子类
+
                     # 判断是否需要记住用户名
                     # remember = request.POST.get('remember')
                     if request.POST.get('remember') == 'on':
@@ -259,3 +270,33 @@ class LoginView(View):
             else:
                 # 用户名或密码错误
                 return render(request, template_name='login.html', content_type={'errormsg': '用户名或密码错误'})
+
+
+# /user
+class UserInfoView(View):
+    """用户中心-信息页"""
+
+    def get(self, request):
+        """显示"""
+        # page='user'
+        return render(request, template_name='user_center_info.html', context={'page': 'user'})
+
+
+# /user/order
+class UserOrderView(View):
+    """用户中心-订单页"""
+
+    def get(self, request):
+        """显示"""
+        # page='order'
+        return render(request, template_name='user_center_order.html', context={'page': 'order'})
+
+
+# /user/address
+class AddressView(View):
+    """用户中心-订单页"""
+
+    def get(self, request):
+        """"用户中心-地址页"""
+        # page='address'
+        return render(request, template_name='user_center_site.html', context={'page': 'address'})
