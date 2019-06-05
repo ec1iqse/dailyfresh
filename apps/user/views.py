@@ -11,6 +11,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.urls import reverse
 from .models import User
+from utils.mixin import LoginRequiredMixin
 import re
 
 # Create your views here.
@@ -253,7 +254,7 @@ class LoginView(View):
                     # 跳转到next_url
                     responce=redirect(to=next_url)
 
-                    # responce = redirect(reverse(viewname='goods:index'))  # HttpResponceRedirect的子类
+                    # responce = redirect(reverse('goods:index'))  # HttpResponceRedirect的子类
 
                     # 判断是否需要记住用户名
                     # remember = request.POST.get('remember')
@@ -273,7 +274,7 @@ class LoginView(View):
 
 
 # /user
-class UserInfoView(View):
+class UserInfoView(LoginRequiredMixin,View):
     """用户中心-信息页"""
 
     def get(self, request):
@@ -283,7 +284,7 @@ class UserInfoView(View):
 
 
 # /user/order
-class UserOrderView(View):
+class UserOrderView(LoginRequiredMixin,View):
     """用户中心-订单页"""
 
     def get(self, request):
@@ -293,7 +294,7 @@ class UserOrderView(View):
 
 
 # /user/address
-class AddressView(View):
+class AddressView(LoginRequiredMixin,View):
     """用户中心-订单页"""
 
     def get(self, request):
