@@ -10,4 +10,3 @@ class LoginRequiredMixin(object):
         # 调用父类的as_view
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
-

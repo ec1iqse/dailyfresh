@@ -13,6 +13,7 @@ from django.urls import reverse
 from .models import User
 from utils.mixin import LoginRequiredMixin
 import re
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -252,7 +253,7 @@ class LoginView(View):
                     # 默认跳转到首页
                     next_url = request.GET.get('next', reverse('goods:index'))
                     # 跳转到next_url
-                    responce=redirect(to=next_url)
+                    responce = redirect(to=next_url)
 
                     # responce = redirect(reverse('goods:index'))  # HttpResponceRedirect的子类
 
@@ -273,31 +274,57 @@ class LoginView(View):
                 return render(request, template_name='login.html', content_type={'errormsg': '用户名或密码错误'})
 
 
+# /user/logout
+class LogoutView(View):
+    """退出登录"""
+
+    def get(self, request):
+        """退出登录"""
+        # 清除用户的session信息
+        logout(request)
+        # 跳转到首页
+        return redirect(reverse(viewname='goods:index'))
+
+
 # /user
-class UserInfoView(LoginRequiredMixin,View):
+class UserInfoView(LoginRequiredMixin, View):
     """用户中心-信息页"""
 
     def get(self, request):
         """显示"""
         # page='user'
+        # request.user.is_authenticated()
+        # 除了给模板文件传递的模板变量之外，django框架会把request.user也传给模板文件
+        # 如果用户未登录， user是一个AnonymousUser的一个实例，
+        # 如果用户登录，则是User类的一个实例，
+
+        # 获取用户的个人信息
+
+        # 获取用户的历史浏览记录
+
         return render(request, template_name='user_center_info.html', context={'page': 'user'})
 
 
 # /user/order
-class UserOrderView(LoginRequiredMixin,View):
+class UserOrderView(LoginRequiredMixin, View):
     """用户中心-订单页"""
 
     def get(self, request):
         """显示"""
         # page='order'
+
+        # 获取用户的订单信息
+
         return render(request, template_name='user_center_order.html', context={'page': 'order'})
 
 
 # /user/address
-class AddressView(LoginRequiredMixin,View):
+class AddressView(LoginRequiredMixin, View):
     """用户中心-订单页"""
 
     def get(self, request):
         """"用户中心-地址页"""
         # page='address'
+
+        # 获取用户的默认收货地址
         return render(request, template_name='user_center_site.html', context={'page': 'address'})

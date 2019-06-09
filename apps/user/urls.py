@@ -23,6 +23,7 @@ from .views import LoginView
 from .views import UserInfoView
 from .views import UserOrderView
 from .views import AddressView
+from .views import LogoutView
 
 # from . import views
 
@@ -33,6 +34,7 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='register'),  # 注册
     re_path(r'^active/(?P<token>.*)$', ActiveView.as_view(), name='active'),  # 用户激活
     path('login', LoginView.as_view(), name='login'),  # 登录
+    path('logout', LogoutView.as_view(), name='logout'),  # 退出登录
 
     # path('', login_required(UserInfoView.as_view()), name='user'),  # 用户中心-信息页
     # path('order', login_required(UserOrderView.as_view()), name='order'),  # 用户中心-订单页
