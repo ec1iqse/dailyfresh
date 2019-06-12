@@ -302,6 +302,12 @@ class UserInfoView(LoginRequiredMixin, View):
 
         # 获取用户的历史浏览记录
 
+        # 获取用户的个人信息
+
+        # 获取用户的历史浏览记录
+
+        # 获取
+
         return render(request, template_name='user_center_info.html', context={'page': 'user'})
 
 
@@ -323,8 +329,21 @@ class AddressView(LoginRequiredMixin, View):
     """用户中心-订单页"""
 
     def get(self, request):
-        """"用户中心-地址页"""
+        """用户中心-地址页"""
         # page='address'
 
         # 获取用户的默认收货地址
         return render(request, template_name='user_center_site.html', context={'page': 'address'})
+
+    def post(self, request):
+        """地址的添加"""
+        receiver = request.POST.get('receiver')
+        addr = request.POST.get('addr')
+        zip_code = request.POST.get('zip_code')
+        phone = request.POST.get('phone')
+        # 接收数据
+        if not all():
+            pass
+        # 校验数据
+        # 业务处理:地址添加
+        # 返回应答
