@@ -14,6 +14,8 @@ from .models import User
 from utils.mixin import LoginRequiredMixin
 import re
 from django.contrib.auth import logout
+from .models import User
+from .models import Address
 
 # Create your views here.
 
@@ -308,7 +310,9 @@ class UserInfoView(LoginRequiredMixin, View):
 
         # 获取
 
-        return render(request, template_name='user_center_info.html', context={'page': 'user'})
+        return render(request,
+                      template_name='user_center_info.html',
+                      context={'page': 'user'})
 
 
 # /user/order
@@ -321,7 +325,9 @@ class UserOrderView(LoginRequiredMixin, View):
 
         # 获取用户的订单信息
 
-        return render(request, template_name='user_center_order.html', context={'page': 'order'})
+        return render(request,
+                      template_name='user_center_order.html',
+                      context={'page': 'order'})
 
 
 # /user/address
@@ -331,9 +337,20 @@ class AddressView(LoginRequiredMixin, View):
     def get(self, request):
         """用户中心-地址页"""
         # page='address'
+        user = request.user  # 获取登录用户对应的用户对象
 
         # 获取用户的默认收货地址
-        return render(request, template_name='user_center_site.html', context={'page': 'address'})
+        try:
+            address = Address.objects.get(user=user, is_default=True)
+
+        except Address.DoesNotExist:
+            # 不存在默认收货地址
+            address = None
+
+        # 使用模板
+        return render(request,
+                      template_name='user_center_site.html',
+                      context={'page': 'address', 'address': address})
 
     def post(self, request):
         """地址的添加"""
@@ -342,8 +359,40 @@ class AddressView(LoginRequiredMixin, View):
         zip_code = request.POST.get('zip_code')
         phone = request.POST.get('phone')
         # 接收数据
-        if not all():
-            pass
+        if not all([receiver, addr, phone]):  # zip_code 邮政编码可以为空
+            return render(request, template_name='user_center_site.html',
+                          context={'errormsg': '数据不完整'})
+
+            # 校验手机号
+        if not re.match(r'^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$', phone):
+            # if not re.match(r'^1[3|4|5|7|8][0-9]{9}$', phone):
+            return render(request, template_name='user_center_site.html',
+                          context={'errormsg': '手机格式不正确'})
+        user = request.user  # 获取登录用户对应的用户对象
+
+        try:
+            address = Address.objects.get(user=user, is_default=True)
+
+        except Address.DoesNotExist:
+            # 不存在默认收货地址
+            address = None
+
+        if address:
+            is_default = False
+        else:
+            is_default = True
+
+        # 添加地址
+        Address.objects.create(user=user,
+                               addr=addr,
+                               receiver=receiver,
+                               zip_code=zip_code,
+                               phone=phone,
+                               is_default=is_default)
+        # 刷新页面地址
+        return redirect(reverse(viewname='user:address'))  # get请求方式
+
+        # 如果用户用户已存在默认收货地址，添加的地址将不作为默认收货地址，否则作为默认收货地址
         # 校验数据
         # 业务处理:地址添加
         # 返回应答
