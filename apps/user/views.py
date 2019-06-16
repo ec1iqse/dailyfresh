@@ -340,12 +340,17 @@ class AddressView(LoginRequiredMixin, View):
         user = request.user  # 获取登录用户对应的用户对象
 
         # 获取用户的默认收货地址
+        address = Address.objects.get_default_address(user)
+
+        '''
         try:
-            address = Address.objects.get(user=user, is_default=True)
+            address = Address.objects.get(user=user, is_default=True)  # models.Manager
 
         except Address.DoesNotExist:
             # 不存在默认收货地址
             address = None
+            
+        '''
 
         # 使用模板
         return render(request,
@@ -370,12 +375,17 @@ class AddressView(LoginRequiredMixin, View):
                           context={'errormsg': '手机格式不正确'})
         user = request.user  # 获取登录用户对应的用户对象
 
+        address = Address.objects.get_default_address(user)
+
+        '''
         try:
             address = Address.objects.get(user=user, is_default=True)
 
         except Address.DoesNotExist:
             # 不存在默认收货地址
             address = None
+
+        '''
 
         if address:
             is_default = False
