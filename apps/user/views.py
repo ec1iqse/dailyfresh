@@ -302,7 +302,7 @@ class UserInfoView(LoginRequiredMixin, View):
 
         # 获取用户的个人信息
         user = request.user
-        addr = Address.objects.get_default_address(user)
+        address = Address.objects.get_default_address(user)
         # 获取用户的历史浏览记录
 
         # 获取用户的个人信息.
@@ -313,7 +313,7 @@ class UserInfoView(LoginRequiredMixin, View):
 
         return render(request,
                       template_name='user_center_info.html',
-                      context={'page': 'user', 'address': addr})
+                      context={'page': 'user', 'address': address})
 
 
 # /user/order
