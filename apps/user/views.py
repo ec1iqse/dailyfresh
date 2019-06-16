@@ -301,10 +301,11 @@ class UserInfoView(LoginRequiredMixin, View):
         # 如果用户登录，则是User类的一个实例，
 
         # 获取用户的个人信息
-
+        user = request.user
+        addr = Address.objects.get_default_address(user)
         # 获取用户的历史浏览记录
 
-        # 获取用户的个人信息
+        # 获取用户的个人信息.
 
         # 获取用户的历史浏览记录
 
@@ -312,7 +313,7 @@ class UserInfoView(LoginRequiredMixin, View):
 
         return render(request,
                       template_name='user_center_info.html',
-                      context={'page': 'user'})
+                      context={'page': 'user', 'address': addr})
 
 
 # /user/order
