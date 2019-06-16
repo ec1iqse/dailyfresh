@@ -35,7 +35,6 @@ class AddressManager(models.Manager):
     def get_default_address(self, user):
         # '''获取用户的默认收货地址'''
         # self.model:获取self对象所在的模型类
-
         try:
             address = self.get(user=user, is_default=True)  # models.Manager
 
@@ -43,6 +42,7 @@ class AddressManager(models.Manager):
             # 不存在默认收货地址
             address = None
         return address
+
 
 # Address.objects.get_default_address()
 
