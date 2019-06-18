@@ -17,29 +17,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/user/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="299" column="41" selection-start-line="299" selection-start-column="41" selection-end-line="299" selection-end-column="41" />
+            <state relative-caret-position="180">
+              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding>
-                <element signature="e#0#70#0" expanded="true" />
+                <element signature="e#706#3412#1" />
                 <element signature="e#3462#6175#0" />
                 <element signature="e#6206#6787#0" />
                 <element signature="e#6832#8820#0" />
                 <element signature="e#8866#9046#0" />
-                <element signature="e#9778#10025#0" />
-                <element signature="e#10093#12362#0" />
+                <element signature="e#9784#10031#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dailyfresh/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="133" column="13" lean-forward="true" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/user_center_info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="936">
+              <caret line="26" column="83" lean-forward="true" selection-start-line="26" selection-start-column="83" selection-end-line="26" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -47,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/user/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
+            <state relative-caret-position="1296">
               <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
               <folding>
                 <element signature="e#0#70#0" expanded="true" />
@@ -57,10 +65,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
+        <entry file="file://$PROJECT_DIR$/apps/goods/apps.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/goods/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+            <state relative-caret-position="540">
+              <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,14 +143,14 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/user_center_site.html" />
         <option value="$PROJECT_DIR$/apps/user/models.py" />
-        <option value="$PROJECT_DIR$/apps/user/views.py" />
         <option value="$PROJECT_DIR$/templates/user_center_info.html" />
+        <option value="$PROJECT_DIR$/apps/user/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="2062" />
+    <option name="y" value="8" />
     <option name="width" value="1345" />
     <option name="height" value="793" />
   </component>
@@ -146,7 +162,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,27 +178,18 @@
               <item name="dailyfresh" type="b2602c69:ProjectViewProjectNode" />
               <item name="dailyfresh" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="goods" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dailyfresh" type="b2602c69:ProjectViewProjectNode" />
               <item name="dailyfresh" type="462c0819:PsiDirectoryNode" />
               <item name="dailyfresh" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dailyfresh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dailyfresh" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dailyfresh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dailyfresh" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -250,7 +256,9 @@
       <workItem from="1560512112610" duration="599000" />
       <workItem from="1560592477688" duration="982000" />
       <workItem from="1560656984491" duration="4422000" />
-      <workItem from="1560680826704" duration="4874000" />
+      <workItem from="1560680826704" duration="5153000" />
+      <workItem from="1560736140326" duration="1053000" />
+      <workItem from="1560852559129" duration="4386000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <created>1559709506009</created>
@@ -315,17 +323,24 @@
       <option name="project" value="LOCAL" />
       <updated>1560688456808</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="用户中心 个人信息页 完成">
+      <created>1560692069582</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560692069582</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53970000" />
+    <option name="totallyTimeSpent" value="59688000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="2062" y="8" width="1345" height="793" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14845759" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1844358" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -381,7 +396,8 @@
     <MESSAGE value="用户中心 地址页 邮政编码不正常" />
     <MESSAGE value="用户中心 地址页 邮政编码正常" />
     <MESSAGE value="封装定义模型管理器方法:地址判断" />
-    <option name="LAST_COMMIT_MESSAGE" value="封装定义模型管理器方法:地址判断" />
+    <MESSAGE value="用户中心 个人信息页 完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户中心 个人信息页 完成" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/run .bat">
@@ -461,13 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dailyfresh/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="188" column="11" lean-forward="true" selection-start-line="188" selection-start-column="11" selection-end-line="188" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/1412029153/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -533,9 +542,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/goods/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/user/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
+        <state relative-caret-position="1296">
           <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
           <folding>
             <element signature="e#0#70#0" expanded="true" />
@@ -543,26 +555,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/user/views.py">
+    <entry file="file://D:/ProgramData/Anaconda3/Lib/site-packages/redis/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="299" column="41" selection-start-line="299" selection-start-column="41" selection-end-line="299" selection-end-column="41" />
+        <state relative-caret-position="238">
+          <caret line="1616" column="8" selection-start-line="1616" selection-start-column="8" selection-end-line="1616" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/goods/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
           <folding>
-            <element signature="e#0#70#0" expanded="true" />
-            <element signature="e#3462#6175#0" />
-            <element signature="e#6206#6787#0" />
-            <element signature="e#6832#8820#0" />
-            <element signature="e#8866#9046#0" />
-            <element signature="e#9778#10025#0" />
-            <element signature="e#10093#12362#0" />
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user_center_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="936">
+          <caret line="26" column="83" lean-forward="true" selection-start-line="26" selection-start-column="83" selection-end-line="26" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dailyfresh/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="133" column="13" lean-forward="true" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="e#706#3412#1" />
+            <element signature="e#3462#6175#0" />
+            <element signature="e#6206#6787#0" />
+            <element signature="e#6832#8820#0" />
+            <element signature="e#8866#9046#0" />
+            <element signature="e#9784#10031#0" />
+          </folding>
         </state>
       </provider>
     </entry>

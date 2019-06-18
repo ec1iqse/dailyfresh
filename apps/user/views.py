@@ -1,21 +1,27 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from celery_tasks.tasks import send_register_active_email
+from django_redis import get_redis_connection
 from django.contrib.auth import authenticate
+from utils.mixin import LoginRequiredMixin
 from itsdangerous import SignatureExpired
 from django.core.mail import send_mail
-from django.shortcuts import redirect
+from django.contrib.auth import logout
 from django.contrib.auth import login
 from django.views.generic import View
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render
+from goods.models import GoodsSKU
 from django.conf import settings
 from django.urls import reverse
-from .models import User
-from utils.mixin import LoginRequiredMixin
-import re
-from django.contrib.auth import logout
-from .models import User
+from redis import StrictRedis
 from .models import Address
+from .models import User
+from .models import User
+import re
+
+
+
 
 # Create your views here.
 
@@ -303,17 +309,37 @@ class UserInfoView(LoginRequiredMixin, View):
         # 获取用户的个人信息
         user = request.user
         address = Address.objects.get_default_address(user)
-        # 获取用户的历史浏览记录
-
-        # 获取用户的个人信息.
 
         # 获取用户的历史浏览记录
+        # sr=StrictRedis(host='localhost',port=6379,db=9)
+        con = get_redis_connection('default')
 
-        # 获取
+        # 取出用户的历史浏览记录
+        history_key = 'history_{}'.format(user.id)
+
+        # 获取用户最新浏览的五个商品id
+        sku_ids = con.lrange(name=history_key, start=0, end=4)
+
+        # 从数据库中查询用户浏览的商品具体信息
+        # goods_li=GoodsSKU.objects.filter(id__in=sku_ids)
+
+        # 遍历获取用户浏览的历史商品记录
+        goods_li = []
+
+        for id in sku_ids:
+            goods = GoodsSKU.objects.get(id=id)
+            goods_li.append(goods)
+
+        # 组织上下文
+        context = {'page': 'user',
+                   'address': address,
+                   'goods_li': goods_li,
+                   }
 
         return render(request,
                       template_name='user_center_info.html',
-                      context={'page': 'user', 'address': address})
+                      context=context
+                      )
 
 
 # /user/order
