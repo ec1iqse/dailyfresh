@@ -324,7 +324,7 @@ class UserInfoView(LoginRequiredMixin, View):
         # goods_li=GoodsSKU.objects.filter(id__in=sku_ids)
 
         # 遍历获取用户浏览的历史商品记录
-        goods_li = []
+        goods_li = list()
 
         for id in sku_ids:
             goods = GoodsSKU.objects.get(id=id)
