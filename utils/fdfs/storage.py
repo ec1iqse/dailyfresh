@@ -60,7 +60,7 @@ class FDFSStorage(Storage):
         """获取返回的文件ID"""
         filename = res.get('Remote file_id')
         # print('文件名称' + filename)
-        print(type(filename))
+        print(type(filename))  # 返回类型为byte 需要转换成string
         return filename.decode()
         # return filename
 

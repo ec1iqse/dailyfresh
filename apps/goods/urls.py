@@ -16,10 +16,10 @@ Including another URLconf
 from django.urls import include
 from django.urls import re_path
 from django.urls import path
-from . import views
+from .views import IndexView
 
 # app_name = 'goods'
 
 urlpatterns = [
-    path('', views.index, name='index'),  # 首页
+    path('',IndexView.as_view(), name='index'),  # 首页
 ]

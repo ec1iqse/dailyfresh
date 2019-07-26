@@ -35,3 +35,8 @@ def send_register_active_email(to_email, username, token):
     send_mail(subject='天天生鲜欢迎信息', message='', from_email=settings.EMAIL_FROM, recipient_list=[to_email],
               html_message=html_content, )
     # 激活连接中需要包含用户的身份信息，并且要把身份进行加密处理
+
+
+def generate_staitc_index_html():
+    """产生首页静态页面"""
+    pass
