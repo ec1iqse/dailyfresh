@@ -189,5 +189,18 @@ SESSION_CACHE_ALIAS = "default"
 # 配置登录url地址
 LOGIN_URL = '/user/login'
 
-# 设置Django文件存储类
+# 设置Django文件存储类 配置django文件存储为fdfs
 DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
+
+# Fdfs存储参数 客户端配置文件同服务器端，服务器地址
+
+# 设置fdfs使用的client.conf文件路径
+
+# FDFS_CLIENT_CONF = './utils/fdfs/client.conf'
+FDFS_CLIENT_CONF = os.path.join(BASE_DIR, './utils/fdfs/client.conf')
+
+# 设置fdfs存储服务器上nginx的IP和端口号
+FDFS_URL = 'http://192.168.243.136:8888/'
+
+# LAST_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# FDFS_CLIENT_CONF = os.path.join(LAST_BASE_DIR, 'utils/fdfs/client.conf')
