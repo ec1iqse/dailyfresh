@@ -6,7 +6,12 @@ import time
 import django
 from celery import Celery
 from django.conf import settings
+from goods.models import GoodsType
+from django.shortcuts import render
 from django.core.mail import send_mail
+from goods.models import IndexGoodsBanner
+from goods.models import IndexPromotionBanner
+from goods.models import IndexTypeGoodsBanner
 
 # 在任务处理者一端(celery)
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dailyfresh.settings')
@@ -37,6 +42,6 @@ def send_register_active_email(to_email, username, token):
     # 激活连接中需要包含用户的身份信息，并且要把身份进行加密处理
 
 
-def generate_staitc_index_html():
+def generate_static_index_html():
     """产生首页静态页面"""
     pass
