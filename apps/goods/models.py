@@ -110,4 +110,4 @@ class IndexPromotionBanner(BaseModel):
     class Meta:
         db_table = 'df_index_promotion'
         verbose_name = '主页促销活动'
-        verbose_name_plural = '主页促销活动'
+        verbose_name_plural = verbose_name

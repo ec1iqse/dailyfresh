@@ -17,9 +17,11 @@ from django.urls import include
 from django.urls import re_path
 from django.urls import path
 from .views import IndexView
+from .views import DetailView
 
 # app_name = 'goods'
 
 urlpatterns = [
-    path('',IndexView.as_view(), name='index'),  # 首页
+    path('index', IndexView.as_view(), name='index'),  # 首页
+    re_path(r'^goods/(?P<goods_id>\d+)$', DetailView.as_view(), name='detail')  # 详情页
 ]
