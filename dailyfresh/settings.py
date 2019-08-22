@@ -200,7 +200,7 @@ DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
 FDFS_CLIENT_CONF = os.path.join(BASE_DIR, './utils/fdfs/client.conf')
 
 # 设置fdfs存储服务器上nginx的IP和端口号
-FDFS_URL = 'http://192.168.243.136:8888/'
+FDFS_URL = 'http://192.168.243.139:8888/'
 
 # LAST_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # FDFS_CLIENT_CONF = os.path.join(LAST_BASE_DIR, 'utils/fdfs/client.conf')

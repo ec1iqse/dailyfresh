@@ -22,11 +22,12 @@ class IndexView(View):
         # 尝试从缓存中获取数据
         context = cache.get('index_page_data')
 
-        print('content类型')
+        # print('content类型')
         # print(type(context))
 
         if context is None:
             # 缓存中没有数据
+            print('设置缓存')
 
             # 获取商品种类信息
             types = GoodsType.objects.all()
@@ -55,8 +56,7 @@ class IndexView(View):
                 'promotion_banners': promotion_banners,
             }
 
-            # 设置缓存
-            # key value timeout
+            # 设置缓存,参数：key value timeout
             cache.set('index_page_data', context, 3600)
 
         # 获取用户购物车中商品的数目
@@ -94,7 +94,10 @@ class DetailView(View):
         sku_orders = OrderGoods.objects.filter(sku=sku).exclude(comment='')
 
         # 获取新品信息
-        new_skus = GoodsSKU.objects.filter(type=sku.type).order_by('-create_time')
+        new_skus = GoodsSKU.objects.filter(type=sku.type).order_by('-create_time')[:2]
+
+        # 获取同一个SPU的其他规格的商品
+        same_spu_skus = GoodsSKU.objects.filter(goods=sku.goods).exclude(id=goods_id)
 
         # 获取用户购物车中商品的数目
         user = request.user
@@ -104,6 +107,16 @@ class DetailView(View):
             conn = get_redis_connection('default')
             cart_key = 'cart_{}'.format(user.id)
             cart_count = conn.hlen(cart_key)
+
+            # 添加用戶历史浏览记录
+            conn = get_redis_connection('default')
+            history_key = 'history_{}'.format(user.id)
+            # 移除列表中的goods_id
+            conn.lrem(history_key, 0, goods_id)
+            # 把goods_id 插入左侧
+            conn.lpush(history_key, goods_id)
+            # 只保存用户最新浏览的五条信息
+            conn.ltrim(history_key, 0, 4)
 
         # 组织模板上下文
         context = {

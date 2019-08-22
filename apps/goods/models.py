@@ -12,13 +12,12 @@ class GoodsType(BaseModel):
     image = models.ImageField(upload_to='type', verbose_name='商品类型图片')
 
     class Meta:
-        db_table = 'df_good_type'
+        db_table = 'df_goods_type'
         verbose_name = '商品种类'
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name
-        # return str(self.name)
 
 
 class GoodsSKU(BaseModel):
@@ -49,7 +48,6 @@ class GoodsSKU(BaseModel):
 class Goods(BaseModel):
     """商品SPU模型类"""
     name = models.CharField(max_length=20, verbose_name='商品SPU名称')
-
     # 富文本类型：带有格式的文本
 
     detail = HTMLField(blank=True, verbose_name='商品详情')
@@ -86,8 +84,8 @@ class IndexGoodsBanner(BaseModel):
 class IndexTypeGoodsBanner(BaseModel):
     """首页分类商品展示模型类"""
     DISPLAY_TYPE_CHOICES = (
-        (0, '标题'),
-        (1, '图片'),
+        (0, "标题"),
+        (1, "图片")
     )
     type = models.ForeignKey('GoodsType', verbose_name='商品类型', on_delete=models.CASCADE)
     sku = models.ForeignKey('GoodsSKU', verbose_name='商品SKU', on_delete=models.CASCADE)
@@ -96,7 +94,7 @@ class IndexTypeGoodsBanner(BaseModel):
 
     class Meta:
         db_table = 'df_index_type_goods'
-        verbose_name = '主页分类展示商品'
+        verbose_name = "主页分类展示商品"
         verbose_name_plural = verbose_name
 
 
@@ -109,5 +107,5 @@ class IndexPromotionBanner(BaseModel):
 
     class Meta:
         db_table = 'df_index_promotion'
-        verbose_name = '主页促销活动'
+        verbose_name = "主页促销活动"
         verbose_name_plural = verbose_name

@@ -6,18 +6,21 @@ from goods.models import IndexGoodsBanner
 from goods.models import IndexTypeGoodsBanner
 
 
-
 class BaseModelAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         """新增或更新表中的数据时调用"""
-        super().save_model(self, request, obj, form, change)
+        # print(request)
+        # print(obj)
+        # print(form)
+        # print(change)
+        # print('-------')
+        super().save_model(request, obj, form, change)
         # 发出任务，让celery worker重新生成首页静态页面
         from celery_tasks.tasks import generate_static_index_html
         generate_static_index_html.delay()
 
-        #清除首页的缓存数据
+        # 清除首页的缓存数据
         cache.delete('index_page_data')
-
 
     def delete_model(self, request, obj):
         """删除表中的数据时调用"""
