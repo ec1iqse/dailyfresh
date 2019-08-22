@@ -10,6 +10,7 @@ from .models import IndexPromotionBanner
 from .models import IndexTypeGoodsBanner
 from order.models import OrderGoods
 from django_redis import get_redis_connection
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -128,3 +129,75 @@ class DetailView(View):
         }
         # 使用模板
         return render(request, template_name='detail.html', context=context, )
+
+
+# 种类ID 页码 排序方式
+# /list?=type_id=种类id&page=页码&sort=排序方式
+# /list/种类id/页码/排序范式
+# /list/种类id/页码?sort=排序方式
+class ListView(View):
+    """列表页"""
+
+    def get(self, request, type_id, page):
+        """显示列表页"""
+        # 先获取种类的信息
+        try:
+            type = GoodsType.objects.get(id=type_id)
+        except GoodsType.DoesNotExist:
+            return redirect(to=reverse('goods:index'))
+
+        # 获取商品的分类信息
+        types = GoodsType.objects.all()
+
+        # 获取排序的范式 # 获取分类商品的信息
+        # sort=default 按照默认id顺序显示
+        # sort=price 按照商品价格排序
+        # sort=hot 按照商品销量排序
+        sort = request.GET.get('sort')
+
+        if sort == 'price':
+            skus = GoodsSKU.objects.filter(type=type).order_by('price')
+        elif sort == 'hot':
+            skus = GoodsSKU.objects.filter(type=type).order_by('-sales')
+        else:
+            sort = 'default'
+            skus = GoodsSKU.objects.filter(type=type).order_by('-id')
+
+        # 对数据进行分页
+        paginator = Paginator(skus, 1)
+
+        # 获取第page页的内容
+        try:
+            page = int(page)
+        except Exception as e:
+            page = 1
+        if page > paginator.num_pages:
+            page = 1
+
+        # 获取第page页的page实例对象
+        skus_page = paginator.page(page)
+
+        # 获取新品信息
+        new_skus = GoodsSKU.objects.filter(type=type).order_by('-create_time')[:2]
+
+        # 获取用户购物车中商品的数目
+        user = request.user
+        cart_count = 0
+        if user.is_authenticated:  # is_authenticated 是属性而不是方法
+            """用户已登录"""
+            conn = get_redis_connection('default')
+            cart_key = 'cart_{}'.format(user.id)
+            cart_count = conn.hlen(cart_key)
+
+        # 组织模板上下文
+        context = {
+            'type': type,
+            'types': types,
+            'skus_page': skus_page,
+            'new_skus': new_skus,
+            'cart_count': cart_count,
+            'sort': sort,
+
+        }
+
+        return render(request, template_name='list.html', context=context)
