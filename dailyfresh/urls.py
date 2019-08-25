@@ -20,10 +20,12 @@ from django.urls import path
 
 # 注意！ include()第一个参数是一个元组！！！是('应用名称.urls','应用名称')
 # 即为：include(('应用名称.urls','应用名称')，namespace='XXXXXXX')
+# https://www.cnblogs.com/wendaobiancheng/p/9109257.html
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^tinymce/', include(('tinymce.urls', 'tinymce'), namespace='tinymce')),  # 富文本编辑器
+    re_path(r'^search/', include(('haystack.urls', 'haystack'), namespace='haystack')),  # 全文检索框架
     re_path(r'^user/', include(('user.urls', 'user'), namespace='user')),  # 用户模块
     re_path(r'cart/', include(('cart.urls', 'cart'), namespace='cart')),  # 购物车模块
     re_path(r'order/', include(('order.urls', 'order'), namespace='order')),  # 订单模块
