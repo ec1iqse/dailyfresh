@@ -452,7 +452,7 @@ html, body {
     margin: 0 auto;
 }
 
-.goods_list li .prize {
+.goods_list li .prise {
     text-align: center;
     font-size: 20px;
     color: #c40000;
@@ -576,7 +576,7 @@ html, body {
     text-overflow: ellipsis;
 }
 
-.new_goods li .prize {
+.new_goods li .prise {
     font-size: 14px;
     color: #da260e;
     margin: 10px auto;
@@ -643,7 +643,7 @@ html, body {
     position: relative;
 }
 
-.goods_type_list .operate .prize {
+.goods_type_list .operate .prise {
     color: #da260e;
     font-size: 14px;
 }
@@ -721,25 +721,25 @@ html, body {
     line-height: 40px;
 }
 
-.prize_bar {
+.prise_bar {
     height: 72px;
     background-color: #fff5f5;
     line-height: 72px;
 }
 
-.prize_bar .show_pirze {
+.prise_bar .show_price {
     font-size: 20px;
     color: #ff3e3e;
     padding-left: 20px
 }
 
-.prize_bar .show_pirze em {
+.prise_bar .show_price em {
     font-style: normal;
     font-size: 36px;
     padding-left: 10px
 }
 
-.prize_bar .show_unit {
+.prise_bar .show_unit {
     padding-left: 150px
 }
 
