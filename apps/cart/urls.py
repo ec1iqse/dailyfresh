@@ -17,9 +17,11 @@ from django.urls import include
 from django.urls import re_path
 from django.urls import path
 from .views import CartAddView
+from .views import CartInfoView
 
 # app_name = 'cart'
 urlpatterns = [
-    path('add', CartAddView.as_view(), name='add')  # 购物车记录添加
+    path('add', CartAddView.as_view(), name='add'),  # 购物车记录添加
+    path('', CartInfoView.as_view(), name='show'),  # 购物车页面显示
 
 ]

@@ -3,18 +3,22 @@ from django.views.generic import View
 from django.http import JsonResponse
 from goods.models import GoodsSKU
 from django_redis import get_redis_connection
+from utils.mixin import LoginRequiredMixin
 
 
 # Create your views here.
-# 添加到购物车：
-# 1:请求方式：采用ajax post
-# 如果涉及到数据的修改（新增、更新、修改），采用post
-# 如果只涉及到数据的获取，采用get
-# 2:传递参数：商品ID(sku_id)数量(count)
+
+
 # /cart/add
 class CartAddView(View):
     """购物车记录添加"""
 
+    # 添加到购物车：
+    # 1:请求方式：采用ajax post
+    # 如果涉及到数据的修改（新增、更新、修改），采用post
+    # 如果只涉及到数据的获取，采用get
+    # 2:传递参数：商品ID(sku_id)数量(count)
+    # ajax发起的请求都在后台，在浏览器上看不到效果
     def post(self, request):
         """购物车记录的添加"""
         user = request.user
@@ -61,3 +65,57 @@ class CartAddView(View):
         total_count = conn.hlen(cart_key)
         # 返回应答
         return JsonResponse({'res': 5, 'total_count': total_count, 'message': '添加成功'})
+
+
+# /cart/
+class CartInfoView(LoginRequiredMixin, View):
+    """购物车页面显示"""
+
+    def get(self, request):
+        """显示"""
+        # 获取登录的用户
+        user = request.user
+
+        # 获取用户购物车中商品的信息
+        conn = get_redis_connection('default')
+        cart_key = 'cart_{}'.format(user.id)
+
+        # 获取{'商品ID':商品数目}
+        cart_dict = conn.hgetall(cart_key)
+
+        skus = list()
+
+        # 保存用户购物车中商品的总数目和总价格
+        total_count = 0
+        total_price = 0
+
+        for sku_id, count in cart_dict.items():  # items() 函数以列表返回可遍历的(键, 值) 元组数组。
+
+            # 根据商品的ID获取商品的信息
+            sku = GoodsSKU.objects.get(id=sku_id)
+
+            # 计算商品的小计
+            amount = sku.price * int(count)  # 数量遍历出来的是字符串，需要转换成int形式
+
+            # 动态给sku对象增加属性amount,保存商品的小计
+            sku.amount = amount
+
+            # 动态给sku对象增加属性count,保存购物车中对应商品的数量
+            sku.count = int(count)
+
+            # 添加
+            skus.append(sku)
+
+            # 累加计算商品的总数目和总价格
+            total_count += int(count)
+            total_price += amount
+
+        # 遍历获取商品的信息
+        # 组织上下文
+        context = {
+            'total_count': total_count,
+            'total_price': total_price,
+            'skus': skus,
+        }
+        # 使用模板
+        return render(request, template_name='cart.html', context=context)
