@@ -124,7 +124,7 @@ class CartInfoView(LoginRequiredMixin, View):
 # 更新购物车记录
 # 采用ajax POST请求
 # 前端需要传递的参数包括商品id(sku_id)，更新的商品数量(count)
-#/cart/update
+# /cart/update
 class CartUpdateView(View):
     """购物车记录更新"""
 
@@ -165,5 +165,14 @@ class CartUpdateView(View):
         # 更新
         conn.hset(cart_key, sku_id, count)
 
+        # 计算用户购物车中商品的总件数{'1':5,'2':3,}
+        vals = conn.hvals(cart_key)
+
+        total_count = 0
+        for val in vals:
+            total_count += int(val)
+
         # 返回应答
-        return JsonResponse({'res': 5, 'message': '更新成功'})
+        return JsonResponse({'res': 5,
+                             'total_count': total_count,
+                             'message': '更新成功', })
