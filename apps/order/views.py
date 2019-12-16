@@ -7,6 +7,8 @@ from goods.models import GoodsSKU
 from user.models import Address
 from django_redis import get_redis_connection
 from utils.mixin import LoginRequiredMixin
+from django.http import JsonResponse
+from .models import OrderInfo
 
 
 # Create your views here.
@@ -70,6 +72,7 @@ class OrderPlaceView(LoginRequiredMixin, View):
         addrs = Address.objects.filter(user=user)
 
         # 组织上下文
+        sku_ids = ','.join(sku_ids)  # 以逗号分隔，[1,25]=>1,25
         context = {
             'skus': skus,
             'total_count': total_count,
@@ -77,6 +80,55 @@ class OrderPlaceView(LoginRequiredMixin, View):
             'transit_price': transit_price,
             'total_pay': total_pay,
             'addrs': addrs,
+            'sku_ids': sku_ids,
+
         }
         # 使用模板
         return render(request, 'place_order.html', context=context)
+
+
+# 前端传递的参数：地址id(addr_id),支付方式( pay_method ),用户要购买的商品的ID字符串(sku_ids)
+class OrderCommitView(View):
+    """订单创建"""
+
+    def post(self, request):
+        """订单创建"""
+        # 判断用户是否登录
+        user = request.user
+        if not user.is_authenticated:
+            return JsonResponse({
+                'res': 0,
+                'err_msg': '用户未登录',
+            })
+
+        # 接收参数
+
+        addr_id = request.POST.get('addr_id')
+        pay_method = request.POST.get('pay_method')
+        sku_ids = request.POST.get('sku_ids')
+
+        # 参数校验
+        if not all(addr_id, pay_method, sku_ids):
+            return JsonResponse({
+                'res': 1,
+                'err_msg': '参数不完整',
+            })
+
+        # 校验付款方式
+        if pay_method not in OrderInfo.PAY_METHODS.keys():
+            return JsonResponse({
+                'res': 2,
+                'err_msg': '非法的支付方式',
+            })
+
+        # 校验地址
+        try:
+            addr = Address.objects.get(id=addr_id)
+        except Address.DoesNotExist:
+            # 地址不存在
+            return JsonResponse({
+                'res': 3,
+                'err_msg': '地址非法',
+            })
+
+        # 校验支付方式

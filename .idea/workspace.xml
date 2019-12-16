@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abcd7487-a025-474b-a817-aceb89fc1ff8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/place_order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB设计.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cart/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/order/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/place_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/place_order.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,10 +50,11 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -61,15 +64,16 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PycharmProjects\dailyfresh_git\templates\search" />
+      <recent name="E:\PycharmProjects\dailyfresh\utils\fdfs" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PycharmProjects\dailyfresh_git" />
       <recent name="E:\PycharmProjects\dailyfresh_git\templates" />
       <recent name="E:\PycharmProjects\dailyfresh_git\templates\search" />
       <recent name="E:\PycharmProjects\dailyfresh_git\templates\search\indexes" />
       <recent name="E:\PycharmProjects\dailyfresh\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\PycharmProjects\dailyfresh_git\templates\search" />
-      <recent name="E:\PycharmProjects\dailyfresh\utils\fdfs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -183,6 +187,21 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@7b2335a5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -240,7 +259,10 @@
       <workItem from="1571473411227" duration="177000" />
       <workItem from="1571473633692" duration="599000" />
       <workItem from="1572346883101" duration="81000" />
-      <workItem from="1572518779077" duration="612000" />
+      <workItem from="1572518779077" duration="7363000" />
+      <workItem from="1573735853143" duration="3859000" />
+      <workItem from="1573817357619" duration="1691000" />
+      <workItem from="1576500247694" duration="4262000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <created>1559709506009</created>
@@ -431,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569154244457</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="购物车页面显示&#10;购物车记录更新&#10;购物车增加&#10;购物车记录删除">
+      <created>1572519772710</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1572519772711</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
