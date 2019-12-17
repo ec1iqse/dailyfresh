@@ -6,10 +6,10 @@ from django.db import models
 class OrderInfo(BaseModel):
     """订单模型类"""
     PAY_METHODS = {
-        '1', '货到付款',
-        '2', '微信支付',
-        '3', '支付宝',
-        '4', '银联支付',
+        '1': '货到付款',
+        '2': '微信支付',
+        '3': '支付宝',
+        '4': '银联支付',
     }
 
     PAY_METHOD_ENUM = {

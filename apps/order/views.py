@@ -9,6 +9,8 @@ from django_redis import get_redis_connection
 from utils.mixin import LoginRequiredMixin
 from django.http import JsonResponse
 from .models import OrderInfo
+from .models import OrderGoods
+from datetime import datetime
 
 
 # Create your views here.
@@ -108,13 +110,14 @@ class OrderCommitView(View):
         sku_ids = request.POST.get('sku_ids')
 
         # 参数校验
-        if not all(addr_id, pay_method, sku_ids):
+        if not all([addr_id, pay_method, sku_ids]):
             return JsonResponse({
                 'res': 1,
                 'err_msg': '参数不完整',
             })
 
         # 校验付款方式
+        # 校验支付方式
         if pay_method not in OrderInfo.PAY_METHODS.keys():
             return JsonResponse({
                 'res': 2,
@@ -131,4 +134,74 @@ class OrderCommitView(View):
                 'err_msg': '地址非法',
             })
 
-        # 校验支付方式
+        # todo:创建订单的核心业务
+        # 组织参数
+        # 订单id:年月日时分秒+用户ID
+        order_id = datetime.now().strftime('%Y%m%d%H%M%S') + str(user.id)
+
+        # 运费
+        transit_price = 10
+
+        # 总数目和总金额
+
+        total_count = 0
+        total_price = 0
+
+        #
+
+        # todo:向df_order_info表中添加一条记录
+        order = OrderInfo.objects.create(order_id=order_id,
+                                         user=user,
+                                         addr=addr,
+                                         pay_method=pay_method,
+                                         total_count=total_count,
+                                         total_price=total_price,
+                                         transit_price=transit_price, )
+
+        # todo：用户订单有几个商品，需要向df_order_goods表中加入几条记录
+        sku_ids = sku_ids.split(',')
+        conn = get_redis_connection('default')
+        cart_key = 'cart_{}'.format(user.id)
+        for sku_id in sku_ids:
+            # 获取商品的信息
+            try:
+                sku = GoodsSKU.objects.get(id=sku_id)
+            except:
+                return JsonResponse({
+                    'res': 4,
+                    'err_msg': '商品不存在',
+                })
+
+            # 从redis中获取用户所需要购买的商品的数量
+            count = conn.hget(cart_key, sku_id)
+
+            # 向df_order_goods表中添加一条记录
+            OrderGoods.objects.create(order=order,
+                                      sku=sku,
+                                      count=count,
+                                      price=sku.price)
+
+            # todo:更新商品的库存和销量
+            sku.stock -= int(count)
+            sku.sales += int(count)
+            sku.save()
+
+            # todo:累加计算订单商品的总数量和总价格
+            amount = sku.price * int(count)
+            total_count += int(count)
+            total_price += amount
+
+        # todo:更新订单信息表中的商品总数量和总价格
+        order.total_count = total_count
+        order.total_price = total_price
+        order.save()
+
+        # todo:清除用户购物车中对应的记录[1,3]
+        conn.hdel(cart_key, *sku_ids)  # 列表拆包
+
+        # 返回应答
+        return JsonResponse({
+            'res': 5,
+            'message': '创建成功',
+        }
+        )

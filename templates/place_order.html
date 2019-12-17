@@ -10,6 +10,7 @@
 
 {% block body %}
 
+{% csrf_token %}
 
     <link rel="stylesheet" type="text/css" href="{% static '/css/reset.css' %}">
 
@@ -99,21 +100,31 @@
     <script type="text/javascript">
         $('#order_btn').click(function () {
             //获取用户选择的地址id,支付方式，以及要购买的商品id字符串
-            addr_id = $('input[name="addr_id"]:checked').val();
-            pay_method = $('input[name="pay_style"]:checked').val();
-            sku_ids = $(this).attr("sku_ids");
-            csrf = $('input[name="csrfmiddlewaretoken"]').val();
-            alert(addr_id + ":" + pay_method + ":" + sku_ids);
+            var addr_id = $('input[name="addr_id"]:checked').val();
+            var pay_method = $('input[name="pay_style"]:checked').val();
+            var sku_ids = $(this).attr("sku_ids");
+            var csrf = $('input[name=csrfmiddlewaretoken]').val();
+            // var csrf = $('input[name=csrfmiddlewaretoken]').val();
+
+
+            //alert(addr_id + ":" + pay_method + ":" + sku_ids); //Debug
+
+
             //发起ajax请求，访问/order/commit,传递的参数:addr_id pay_method,sku_id
             //
             params = {
                 "addr_id": addr_id,
                 "pay_method": pay_method,
                 "sku_ids": sku_ids,
-                "csrfmiddlewaretoken":csrf,
+                "csrfmiddlewaretoken": csrf,
             }
-            $.post('order/commit',params,function (data) {
-
+            $.post('/order/commit', params, function (data) {
+                if (data.res == 5) {
+                    //创建成功
+                    alert("创建成功");
+                } else {
+                    alert(data.err_msg);
+                }
 
             })
 
