@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abcd7487-a025-474b-a817-aceb89fc1ff8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/whoosh_index/MAIN_0pa49fy7h64e6j0z.seg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/whoosh_index/MAIN_ki8ag4tnlhmbfl12.seg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/whoosh_index/MAIN_tf0vnl1f7x8ocx6r.seg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/whoosh_index/MAIN_tn635knurptd7t31.seg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/whoosh_index/_MAIN_6.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/whoosh_index/MAIN_8v38hd0ua3pc0jud.seg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/whoosh_index/_MAIN_7.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/place_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/place_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/whoosh_index/_MAIN_2.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/MAIN_0pa49fy7h64e6j0z.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/MAIN_2lm3bv2hyw131ch8.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/MAIN_ki8ag4tnlhmbfl12.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/MAIN_tf0vnl1f7x8ocx6r.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/MAIN_tn635knurptd7t31.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/whoosh_index/_MAIN_6.toc" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +53,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -264,7 +266,9 @@
       <workItem from="1572518779077" duration="7363000" />
       <workItem from="1573735853143" duration="3859000" />
       <workItem from="1573817357619" duration="1691000" />
-      <workItem from="1576500247694" duration="13143000" />
+      <workItem from="1576500247694" duration="14108000" />
+      <workItem from="1576757599082" duration="41000" />
+      <workItem from="1576757772227" duration="2478000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <created>1559709506009</created>
@@ -469,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576504535869</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="购物车页面显示&#10;购物车记录更新&#10;购物车增加&#10;购物车记录删除">
+      <created>1576572796642</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1576572796642</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,6 +514,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Fix" />
     <MESSAGE value="登录后页面跳转未完成" />
     <MESSAGE value="登录判断，欢迎信息 完成" />

@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from .models import OrderInfo
 from .models import OrderGoods
 from datetime import datetime
-
+import time
 
 # Create your views here.
 # order/place
@@ -165,12 +165,18 @@ class OrderCommitView(View):
         for sku_id in sku_ids:
             # 获取商品的信息
             try:
-                sku = GoodsSKU.objects.get(id=sku_id)
-            except:
+                # todo： 上锁 有问题???
+                # select * from df_goods_sku where id=sku_id for update
+                sku = GoodsSKU.objects.select_for_update().get(id=sku_id)  # 上锁 悲观锁
+            except Exception as ex:
+                print(ex)
                 return JsonResponse({
                     'res': 4,
                     'err_msg': '商品不存在',
                 })
+
+            print('{}{}'.format(user.id,sku.stock))
+            time.sleep(10)
 
             # 从redis中获取用户所需要购买的商品的数量
             count = conn.hget(cart_key, sku_id)
