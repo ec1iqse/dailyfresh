@@ -11,10 +11,13 @@ from django.http import JsonResponse
 from .models import OrderInfo
 from .models import OrderGoods
 from datetime import datetime
+from django.db import transaction
 import time
+
 
 # Create your views here.
 # order/place
+
 class OrderPlaceView(LoginRequiredMixin, View):
     """提交订单页面显示"""
 
@@ -90,6 +93,7 @@ class OrderPlaceView(LoginRequiredMixin, View):
 
 
 # 前端传递的参数：地址id(addr_id),支付方式( pay_method ),用户要购买的商品的ID字符串(sku_ids)
+
 class OrderCommitView(View):
     """订单创建"""
 
@@ -167,7 +171,8 @@ class OrderCommitView(View):
             try:
                 # todo： 上锁 有问题???
                 # select * from df_goods_sku where id=sku_id for update
-                sku = GoodsSKU.objects.select_for_update().get(id=sku_id)  # 上锁 悲观锁
+                with transaction.atomic():  # 加锁
+                    sku = GoodsSKU.objects.select_for_update().get(id=sku_id)  # 上锁 悲观锁
             except Exception as ex:
                 print(ex)
                 return JsonResponse({
@@ -175,7 +180,7 @@ class OrderCommitView(View):
                     'err_msg': '商品不存在',
                 })
 
-            print('{}{}'.format(user.id,sku.stock))
+            print('{}{}'.format(user.id, sku.stock))
             time.sleep(10)
 
             # 从redis中获取用户所需要购买的商品的数量
